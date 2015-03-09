@@ -1,0 +1,23 @@
+{
+  "name": "contacts",
+  "version": "0.0.0",
+  "homepage": "https://github.com/sergeyermakov/contacts",
+  "authors": [
+    "Sergey Ermakov <xom94ok@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.2",
+    "firebase": "~2.2.2",
+    "angular": "",
+    "angularfire": "~1.0.0",
+    "angular-route": "~1.3.14"
+  }
+}
