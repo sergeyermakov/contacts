@@ -22,7 +22,7 @@ app.config(['$routeProvider', function($routeProvider) {
             redirectTo: '/'
         });
 }])
-app.factory('firebaseFactory', ['fbUrl', '$firebaseArray', function(fbUrl, $firebaseArray) {
+app.factory('firebaseFactory', ['fbUrl', '$firebaseArray', '$firebaseObject', function(fbUrl, $firebaseArray, $firebaseObject) {
     var fb = {},
         ref = new Firebase(fbUrl),
         sync = $firebaseArray(ref);
@@ -33,7 +33,7 @@ app.factory('firebaseFactory', ['fbUrl', '$firebaseArray', function(fbUrl, $fire
 
     fb.showContact = function(id) {
 
-        var url = fbURL + id,
+        var url = fbUrl + id,
             ref = new Firebase(url),
             sync = $firebaseObject(ref);
 
@@ -56,23 +56,40 @@ app.factory('firebaseFactory', ['fbUrl', '$firebaseArray', function(fbUrl, $fire
     return fb;
 }])
 
-app.controller('IndexCtrl', ['$scope', '$rootScope', '$firebaseArray', function($scope, $rootScope, $firebaseArray) {
+app.controller('IndexCtrl', ['$scope', '$rootScope', 'firebaseFactory', '$firebaseArray', function($scope, $rootScope, firebaseFactory, $firebaseArray) {
 
-    $scope.data = sync;
+    $scope.data = firebaseFactory.listContacts();
 
-    console.log(sync);
+   
 
     $scope.title = 'Контакты';
 
 }]);
 app.controller('AddCtrl', ['$scope', '$rootScope', 'firebaseFactory', function($scope, $rootScope, firebaseFactory) {
-    //$rootScope.pageName = 'add';
+    $rootScope.pageName = 'add';
     $scope.title = 'Добавить контакт'
 
     $scope.addCont = function(arr) {
         firebaseFactory.addContact(arr);
     }
+    $scope.delCont = function(obj) {
+        firebaseFactory.deleteContact(obj);
+    }
 
+
+
+
+}]);
+app.controller('ContactCtrl', ['$scope', '$rootScope', 'firebaseFactory', '$routeParams', function($scope, $rootScope, firebaseFactory, $routeParams) {
+    $rootScope.pageName = 'item';
+    $scope.title = 'контакт'
+
+    var id =  $routeParams.id;
+    $scope.id = id;
+    $scope.item = firebaseFactory.showContact(id);
+    $scope.delCont = function(obj) {
+        firebaseFactory.deleteContact(obj);
+    }
 
 
 }]);

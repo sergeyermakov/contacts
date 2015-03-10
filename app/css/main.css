@@ -6,7 +6,8 @@ body {
 .page {
 	background-color: #eeebec;
 	padding: 20px;
-	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	        border-radius: 6px;
 }
 .container {
 	width: 800px;
@@ -17,6 +18,22 @@ body {
 	margin: 20px auto;
 	border:1px solid #555;
 	background-color: #ccc;
-	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	        border-radius: 5px;
 	overflow: hidden; 
+}
+.item {
+	display:inline-block;
+	float:left;
+	margin:0 0 10px 10px;
+	text-align: center;
+	text-transform: capitalize;
+	width:142px;
+}
+.item img {
+	width:140px;
+	height: 140px;
+	border:1px solid grey;
+	-webkit-border-radius: 5px;
+	        border-radius: 5px;
 }
