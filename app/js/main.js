@@ -1,51 +1,78 @@
 var app = angular.module('app', ['ngRoute', 'firebase']);
 
-app.config(['$routeProvider', function ($routeProvider) {
-	$routeProvider
-		.when('/', {
-			templateUrl: 'view/list.html',
-			controller: 'IndexCtrl'
-	})
-		.when('/add', {
-			templateUrl: 'view/add.html',
-			controller: 'AddCtrl'
-	})
-		.otherwise({redirectTo:'/'});
+app.value({
+    'fbUrl': 'https://contacts-hw4.firebaseio.com/'
+});
+
+app.config(['$routeProvider', function($routeProvider) {
+    $routeProvider
+        .when('/', {
+            templateUrl: 'view/list.html',
+            controller: 'IndexCtrl'
+        })
+        .when('/add', {
+            templateUrl: 'view/add.html',
+            controller: 'AddCtrl'
+        })
+        .when('/item/:id', {
+            templateUrl: 'view/add.html',
+            controller: 'ContactCtrl'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
+}])
+app.factory('firebaseFactory', ['fbUrl', '$firebaseArray', function(fbUrl, $firebaseArray) {
+    var fb = {},
+        ref = new Firebase(fbUrl),
+        sync = $firebaseArray(ref);
+
+    fb.listContacts = function() {
+        return sync;
+    }
+
+    fb.showContact = function(id) {
+
+        var url = fbURL + id,
+            ref = new Firebase(url),
+            sync = $firebaseObject(ref);
+
+        return sync;
+
+    }
+    fb.addContact = function(arr) {
+        return $firebaseArray(ref).$add(arr);
+        //return sync.$add(arr);
+    }
+
+    fb.saveContact = function() {
+        return sync.$save();
+    }
+
+    fb.deleteContact = function(obj) {
+        return sync.$remove(obj);
+    }
+
+    return fb;
 }])
 
-app.controller('IndexCtrl', ['$scope', '$rootScope', '$firebaseArray', function ($scope, $rootScope, $firebaseArray) {
-	
-	var ref = new Firebase("https://contacts-hw4.firebaseio.com/"),
-		sync = $firebaseArray(ref);
+app.controller('IndexCtrl', ['$scope', '$rootScope', '$firebaseArray', function($scope, $rootScope, $firebaseArray) {
 
-	$scope.data = sync;
+    $scope.data = sync;
 
-	console.log(sync);
+    console.log(sync);
 
-	$scope.title = 'Контакты';
-	
-	// $scope.items = {
-	// 	'title1': 'New',
-	// 	'title4': 'New',
-	// 	'title3': 'New',
-	// 	'title2': 'New',
-	// }
+    $scope.title = 'Контакты';
+
 }]);
-app.controller('AddCtrl', ['$scope', '$rootScope', '$firebaseArray', function ($scope, $rootScope, $firebaseArray) {
-	
-	var ref = new Firebase("https://contacts-hw4.firebaseio.com/"),
-		sync = $firebaseArray(ref);
+app.controller('AddCtrl', ['$scope', '$rootScope', 'firebaseFactory', function($scope, $rootScope, firebaseFactory) {
+    //$rootScope.pageName = 'add';
+    $scope.title = 'Добавить контакт'
 
-	$scope.data = sync;
+    $scope.addCont = function(arr) {
+        firebaseFactory.addContact(arr);
+    }
 
-	console.log(sync);
 
-	$scope.title = 'Добавить контакт';
-	
-	// $scope.items = {
-	// 	'title1': 'New',
-	// 	'title4': 'New',
-	// 	'title3': 'New',
-	// 	'title2': 'New',
-	// }
+
 }]);
