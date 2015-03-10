@@ -5,4 +5,18 @@ body {
 
 .page {
 	background-color: #eeebec;
+	padding: 20px;
+	border-radius: 6px;
+}
+.container {
+	width: 800px;
+}
+.photo {
+	width: 185px;
+	height:185px;
+	margin: 20px auto;
+	border:1px solid #555;
+	background-color: #ccc;
+	border-radius: 5px;
+	overflow: hidden; 
 }

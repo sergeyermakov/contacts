@@ -1,0 +1,66 @@
+[
+  {
+    "number": "1",
+    "name": "Вася",
+    "sername" : "Пряников",
+    "tel" : "+7 911 234 56 66",
+    "mail" : "mdo@gmail.com",
+    "imgUrl" : "img/img-1.jpg"
+  },
+  {
+    "number" : "2",
+    "name": "Коля",
+    "sername" : "Иванов",
+    "tel" : "+7 911 234 56 66",
+    "mail" : "kivan@gmail.com",
+    "imgUrl" : "img/img-1.jpg"
+  },
+  {
+    "number" : "3",
+    "name": "Оля",
+    "sername" : "Птичкина",
+    "tel" : "+7 911 234 56 66",
+    "mail" : "birdy@gmail.com",
+    "imgUrl" : "img/img-1.jpg"
+  },
+  {
+    "number" : "4",
+    "name": "Дима",
+    "sername" : "Громов",
+    "tel" : "+7 911 234 56 66",
+    "mail" : "grom@gmail.com",
+    "imgUrl" : "img/img-1.jpg"
+  },
+  {
+    "number" : "5",
+    "name": "Даша",
+    "sername" : "Косичкина",
+    "tel" : "+7 911 234 56 66",
+    "mail" : "hosich@gmail.com",
+    "imgUrl" : "img/img-1.jpg"
+  },
+  {
+    "number" : "6",
+    "name": "Ира",
+    "sername" : "Иванова",
+    "tel" : "+7 911 234 56 66",
+    "mail" : "irai@gmail.com",
+    "imgUrl" : "img/img-1.jpg"
+  },
+  {
+    "number" : "7",
+    "name": "Илья",
+    "sername" : "Гробов",
+    "tel" : "+7 911 234 56 66",
+    "mail" : "grobov@gmail.com",
+    "imgUrl" : "img/img-1.jpg"
+  },
+  {
+    "number" : "8",
+    "name": "Дима",
+    "sername" : "Громов",
+    "tel" : "+7 911 234 56 66",
+    "mail" : "grom@gmail.com",
+    "imgUrl" : "img/img-1.jpg"
+  }
+]
